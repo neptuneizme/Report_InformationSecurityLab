@@ -1,5 +1,6 @@
 # 21110073 Le Bui Huu Phuc
 # Lab #1: Buffer Overflow
+https://github.com/neptuneizme/Report_InformationSecurityLab/blob/ba45caceef5c15c556d1cd833d32601037087b14/Lab%20%231%3A%20Buffer%20Overflow.md
 # Task 1: Stack smashing by memory overwritten
 ## 1.1. bof1.c
 - Compile the program using the following command:
